@@ -1,0 +1,16 @@
+@import '../variables';
+
+header{
+    align-items: center;
+    background-color: $dark-blue;
+    color: $light-blue;
+    display: flex;
+    grid-area: header;
+    height: 8.2em;
+    justify-content: center;
+
+    h1{
+        font-size: 3.4em;
+        font-weight: 400;
+    }
+}
