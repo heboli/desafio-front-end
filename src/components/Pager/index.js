@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export default function Pager({page, total_pages, changePage}) {
   
   let pages = []
-  const elementsByPage = 5;  
+  const elementsByPage = parseInt(process.env.REACT_APP_ELEMENTS_BY_PAGE) || 5;  
   //5 pags
   let start = page - Math.floor(elementsByPage/2)
   let end = start + elementsByPage

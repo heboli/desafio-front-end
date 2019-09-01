@@ -17,16 +17,15 @@ const searchMovies = async (query, page) => {
                             let total_pages = Math.ceil(total_results / 5) 
                             return {results, total_pages, original_page}
                           })
-  console.log("get",data)
+  // console.log("get",data)
   return data
 }
 
 const getMovieGenres = async () => {
-  console.log(apiKey)
+  // console.log(apiKey)
   const data = await api.get(`/genre/movie/list?api_key=${apiKey}`)
                             .then(res => res.data)
-                            // .then(res => console.log(res))
-  console.log("labels", data)
+  // console.log("labels", data)
   return data
 }
 
