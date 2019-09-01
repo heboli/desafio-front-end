@@ -24,9 +24,12 @@ const searchMovies = async (query, page) => {
 const getMovieGenres = async () => {
   // console.log(apiKey)
   const data = await api.get(`/genre/movie/list?api_key=${apiKey}`)
-                            .then(res => res.data)
-  // console.log("labels", data)
-  return data
+                            .then(res => res.data.genres)
+  let genre_list = new Map()
+  data.forEach( (genre) => {
+    genre_list.set(genre.id, genre.name)
+  })
+  return genre_list
 }
 
 export { searchMovies, getMovieGenres };

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './style.scss';
 
-export default function Card({movie}) {
+export default function Card({movie, genres}) {
   // console.log(el)
   const {title, poster_path, popularity, overview, release_date} = movie;
   // console.log(children)
@@ -22,6 +22,9 @@ export default function Card({movie}) {
           </div>
           <span className="date abel">{ moment(release_date).format('DD/MM/YYYY')}</span>
           <p className="lato">{overview}</p>
+          <div className="genres">
+            {genres.map( (genre, index) => <span key={index} className="genre abel">{genre}</span>)}
+          </div>
         </div>
       </div>
     </div>

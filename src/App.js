@@ -5,6 +5,7 @@ import SearchBox from './components/SearchBox/index';
 import Card from './components/Card/index';
 import Pagination from './components/Pagination/index';
 import { searchMovies, getMovieGenres } from './api';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends Component{
 
@@ -13,7 +14,7 @@ class App extends Component{
     page: 1,
     original_page: 1,
     total_pages: 1,
-    genre_list: [],
+    genre_list: new Map(),
     query: ''
   }
 
@@ -29,7 +30,7 @@ class App extends Component{
   updateMovies = async ({ original_page = this.state.original_page, query = this.state.query, page = this.state.page }) => {
     // let { page } = this.state
     if(query !== this.state.query){
-      console.log("epa")
+      // console.log("epa")
       page = original_page = 1
     }
     const data = await searchMovies(query, original_page)
@@ -58,7 +59,7 @@ class App extends Component{
     
     console.log("page",this.state.page)
     // const index = 
-    const { page, total_pages } = this.state
+    const { page, total_pages, genre_list } = this.state
     const start = ((page - 1) * this.elementsByPage) % 20
     const end = start + this.elementsByPage
 
@@ -72,7 +73,7 @@ class App extends Component{
         <Header />
         <SearchBox handle={(query) => this.updateMovies({ query })}/>
         <main>
-          {movies.map((movie, index) => <Card movie={movie} key={index} />)}
+          {movies.map((movie, index) => <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/>)}
           <div>
             { this.state.query !== '' && 
               <Pagination 
