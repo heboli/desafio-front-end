@@ -1,0 +1,12 @@
+@import '../variables';
+.card{
+    background-color: $gray;
+    height: 320px;
+    margin: 1em 0;
+    // padding: 0 1.2em;
+
+    img{
+        height: 100%;
+        width: auto;
+    }
+}
