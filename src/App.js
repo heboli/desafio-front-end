@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Header from './components/Header/index';
 import SearchBox from './components/SearchBox/index';
 import Card from './components/Card/index';
-import Pager from './components/Pager/index';
+import Pagination from './components/Pagination/index';
 import { searchMovies, getMovieGenres } from './api';
 
 class App extends Component{
@@ -26,8 +26,8 @@ class App extends Component{
     this.setState({ genre_list })
   }
 
-  updateMovies = async ({ original_page = this.state.original_page, query = this.state.query }) => {
-    let { page } = this.state
+  updateMovies = async ({ original_page = this.state.original_page, query = this.state.query, page = this.state.page }) => {
+    // let { page } = this.state
     if(query !== this.state.query){
       console.log("epa")
       page = original_page = 1
@@ -49,14 +49,14 @@ class App extends Component{
     // console.log('original:', original_page)
     if(original_page !== this.state.original_page){
       console.log("Updating...")
-      this.updateMovies({ original_page })
+      this.updateMovies({ original_page, page })
     }
     this.setState({page})
   }
 
   render() {
     
-    console.log("state",this.state)
+    console.log("page",this.state.page)
     // const index = 
     const { page, total_pages } = this.state
     const start = ((page - 1) * this.elementsByPage) % 20
@@ -64,7 +64,7 @@ class App extends Component{
 
     const movies = this.state.results.slice(start, end)
     // console.log("movies",movies, start, end)
-    console.log("s e", start, end)
+    // console.log("s e", start, end)
     // const pages = this.generatePagesRange(page, total_pages)
     
     return (
@@ -75,7 +75,7 @@ class App extends Component{
           {movies.map((movie, index) => <Card movie={movie} key={index} />)}
           <div>
             { this.state.query !== '' && 
-              <Pager 
+              <Pagination 
                 page={page} 
                 total_pages={total_pages}
                 changePage={(anotherPage) => this.changePage(anotherPage)}

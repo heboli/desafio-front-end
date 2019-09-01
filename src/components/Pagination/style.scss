@@ -1,0 +1,51 @@
+@import '../variables';
+
+.pagination{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+
+    .bttn-container{
+        margin: 0 1.2em;
+        position: relative;
+
+        button{
+            background: transparent;
+            border: none;
+            color: $dark-blue;
+            font-size: 1.8em;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            &:focus,
+            &:active{
+                outline: none;
+            }
+    
+            &.current{
+                background-color: $dark-blue;
+                border-radius: 50%;
+                color: $light-blue;
+                height: 2.4em;
+                width: 2.4em;
+                outline: none;
+
+                &::after{
+                    border: 3px solid $light-blue;
+                    box-sizing: border-box;
+                    border-radius: 50%;
+                    content: '';
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    transform: scale(0.9,0.9);
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
