@@ -4,7 +4,7 @@ import Header from './components/Header/index';
 import SearchBox from './components/SearchBox/index';
 import Card from './components/Card/index';
 import Pager from './components/Pager/index';
-import searchMovies from './api';
+import { searchMovies, getMovieGenres } from './api';
 
 class App extends Component{
 
@@ -13,6 +13,7 @@ class App extends Component{
     page: 1,
     original_page: 1,
     total_pages: 1,
+    genre_list: [],
     query: ''
   }
 
@@ -20,7 +21,11 @@ class App extends Component{
   elementsByPage = process.env.ELEMENTS_BY_PAGE
 
 
-  // componentDidMount = () => this.getMovies("olar", 1)
+  componentDidMount = async () => {
+    this.changeQuery("Thor")
+    const genre_list = await getMovieGenres()
+    this.setState({ genre_list })
+  }
 
   changeQuery = async (query) => {      
     const {results, total_pages, original_page} = await searchMovies(query, 1)
@@ -30,7 +35,7 @@ class App extends Component{
 
   changePage = (page) => {
     const elementsByPage = this.elementsByPage
-    if((page - 1)/elementsByPage != page){
+    if((page - 1)/elementsByPage !== page){
       
     }
   }
@@ -49,7 +54,7 @@ class App extends Component{
         <Header />
         <SearchBox handle={(query) => this.changeQuery(query)}/>
         <main>
-          {movies.map((movie, index) => <Card movie={movie} key={index} />)}
+          {movies.map((movie, index) => <Card movie={movie} key={index} ><a>test</a></Card>)}
           <div>
             { this.state.query !== '' && 
               <Pager 
