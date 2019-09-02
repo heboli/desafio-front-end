@@ -1,7 +1,7 @@
-#Desafio Frontend Cubos
+#Desafio Frontend Cubos  
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Pasos para Compilação/Execução  
+### Pasos para Compilação/Execução  
 
 *   Execute `npm install` na pasta do projeto
 *   Copie (ou renomeie) o arquivo _.env.example_ para _.env_
