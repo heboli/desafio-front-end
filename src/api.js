@@ -68,7 +68,7 @@ const getMovie = async (id) => {
           budget,
           revenue,
           profit: revenue - budget,
-          genres: genres.map( (genre) => genre.name ),
+          genres: !error ? genres.map( (genre) => genre.name ) : [],
           popularity,
           poster_path,
           error

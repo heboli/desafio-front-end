@@ -39,7 +39,6 @@ export default class Details extends Component {
   }
   
   render() {
-    console.log(this.state)
     const duration = moment.duration(this.state.runtime, 'minutes')
     const items = {
       'situação': this.state.status,
@@ -78,7 +77,7 @@ export default class Details extends Component {
                               </div>
                   )}
                 </div>
-                <div class="badges">
+                <div className="badges">
                   <GenreList genres={this.state.genres} />
                   <Popularity value={this.state.vote_average} bigger />
                 </div>
