@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { searchMovies, getMoviesGenres } from './api';
-import Header from './components/Header/index';
-import SearchBox from './components/SearchBox/index';
-import Card from './components/Card/index';
-import Pagination from './components/Pagination/index';
-import Details from './components/Details/index';
-import Illustration from './components/Illustration/index';
+import Header from './components/Header/';
+import SearchBox from './components/SearchBox/';
+import Card from './components/Card/';
+import Pagination from './components/Pagination/';
+import Details from './components/Details/';
+import Illustration from './components/Illustration/';
 
 class App extends Component{
 
@@ -16,6 +16,7 @@ class App extends Component{
     original_page: 1,
     total_pages: 1,
     genre_list: new Map(),
+    status: 'search',
     query: ''
   }
 
@@ -31,11 +32,13 @@ class App extends Component{
       page = original_page = 1
     }
 
+    this.setState({ status: 'loading' })
+
     const data = await searchMovies(query, original_page)
     const { results, total_pages } = data;
     ({ original_page } = data)
 
-    this.setState({ results, total_pages, page, query, original_page })
+    this.setState({ results, total_pages, page, query, original_page, status: query === '' ? 'search' : null })
   }
 
   componentDidUpdate = () => {
@@ -48,7 +51,7 @@ class App extends Component{
   }
 
   render() {
-    const { page, total_pages, genre_list, query } = this.state
+    const { page, total_pages, genre_list, query, status: illustration } = this.state
     const start = ((page - 1) * this.elementsByPage) % 20
     const end = start + this.elementsByPage
     const movies = this.state.results.slice(start, end)
@@ -64,8 +67,7 @@ class App extends Component{
                 {movies.map( (movie, index) => 
                   <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/> )
                 }
-                {query === '' && <Illustration content="search" />}
-                {total_pages === 0 && <Illustration content="empty" />}
+                {!!illustration && <Illustration content={illustration} />}
               </main>
               {query !== '' &&
                 <Pagination 

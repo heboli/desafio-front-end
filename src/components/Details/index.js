@@ -24,6 +24,7 @@ export default class Details extends Component {
     vote_average: 0,
     poster_path: '',
     error: false,
+    loading: true,
     videos: []
   }
 
@@ -35,7 +36,7 @@ export default class Details extends Component {
   componentDidMount = async () => {
     const data = await getMovie(this.props.match.params.id)
     this.updateVideos()
-    this.setState({ ...data })                  
+    this.setState({ ...data, loading: false })                  
   }
   
   render() {
@@ -50,10 +51,13 @@ export default class Details extends Component {
     }
 
     const date = moment(this.state.release_date)
+    const illustration = this.state.error ? 'err404' : this.state.loading ? 'loading' : null
 
     return (
       <>
-      { !this.state.error ?
+      {!!illustration ? 
+        <Illustration content={illustration} />
+        :
         <div className="details-container">
           <div className="details">
             <div className="top-bar">
@@ -96,8 +100,6 @@ export default class Details extends Component {
             )}
           </div>
         </div>
-        :
-        <Illustration content="err404" />
       }
       </>
     );
