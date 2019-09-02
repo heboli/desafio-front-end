@@ -36,10 +36,6 @@ class App extends Component{
     ({ original_page } = data)
 
     this.setState({ results, total_pages, page, query, original_page })
-  } 
-  
-  changePage = (page) => {
-    this.setState({page})
   }
 
   componentDidUpdate = () => {
@@ -73,14 +69,14 @@ class App extends Component{
                   <Pagination 
                     page={page} 
                     total_pages={total_pages}
-                    changePage={(anotherPage) => this.changePage(anotherPage)} 
+                    changePage={(newPage) => this.setState({ page: newPage })} 
                   />
                 }
               </main>
             </Route>
             <Route 
               path="/movie/:id"
-              render={ (props) =>
+              render={(props) =>
                         <main>
                           <Details {...props} />
                         </main>

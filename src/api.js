@@ -14,8 +14,8 @@ const searchMovies = async (query, page) => {
   const data = await api.get(`/search/movie?api_key=${apiKey}&query=${query}&page=${page}`)
                         .then( (res) => {
                             let { results, total_results, page: original_page } = res.data
-                            results = results.map( ({ title, poster_path, popularity, overview, release_date, id, genre_ids }) => 
-                               ({ title, poster_path, popularity, overview, release_date, id, genre_ids })
+                            results = results.map( ({ title, poster_path, vote_average, overview, release_date, id, genre_ids }) => 
+                               ({ title, poster_path, vote_average, overview, release_date, id, genre_ids })
                             )
                             let total_pages = Math.ceil(total_results / 5) 
                             return { results, total_pages, original_page }

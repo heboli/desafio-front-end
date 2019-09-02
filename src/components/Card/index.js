@@ -7,8 +7,8 @@ import Popularity from '../Popularity/index';
 import './style.scss';
 
 export default function Card({movie, genres}) {
-  const { title, poster_path, popularity, overview, release_date, id } = movie;
-
+  const { title, poster_path, vote_average, overview, release_date, id } = movie;
+  const date = moment(release_date)
   return (
     <div className="card-container">
       <div className="card">
@@ -16,11 +16,11 @@ export default function Card({movie, genres}) {
 
         <div className="content">
           <div className="top-bar abel">
-            <Popularity value={popularity} halfDown />
+            <Popularity value={vote_average * 10} halfDown />
             <Link to={`/movie/${id}`}><h1>{title}</h1></Link>
           </div>
 
-          <span className="date abel">{moment(release_date).format('DD/MM/YYYY')}</span>
+          <span className="date abel">{date.isValid() ? date.format('DD/MM/YYYY') : "--"}</span>
           <div className="info">
             <p className="lato">{overview}</p>
             <GenreList genres={genres}/>

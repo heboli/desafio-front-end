@@ -5,6 +5,7 @@ import ISO6391 from 'iso-639-1';
 import Illustration from '../Illustration';
 import GenreList from '../GenreList';
 import Popularity from '../Popularity';
+import numeral from 'numeral';
 
 import './style.scss';
 
@@ -20,7 +21,7 @@ export default class Details extends Component {
     revenue: 0,
     profit: 0,
     genres: [],
-    popularity: 0,
+    vote_average: 0,
     poster_path: '',
     error: false,
     videos: []
@@ -44,10 +45,11 @@ export default class Details extends Component {
       'situação': this.state.status,
       'idioma': ISO6391.getName(this.state.original_language),
       'duração': `${duration.hours()}h ${duration.minutes()}min`,
-      'orçamento': this.state.budget,
-      'receita': this.state.revenue,
-      'lucro': this.state.profit
+      'orçamento': numeral(this.state.budget).format('$0,0.00'),
+      'receita': numeral(this.state.revenue).format('$0,0.00'),
+      'lucro': numeral(this.state.profit).format('$0,0.00')
     }
+    const date = moment(this.state.release_date)
 
     return (
       <>
@@ -56,7 +58,7 @@ export default class Details extends Component {
           <div className="details">
             <div className="top-bar">
               <h1 className="abel">{this.state.title}</h1>
-              <span className="date lato">{moment(this.state.release_date).format('DD/MM/YYYY')}</span>
+              <span className="date lato">{date.isValid() ? date.format('DD/MM/YYYY') : "--"}</span>
             </div>
             <div className="content">
               {!!this.state.poster_path && <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> }
@@ -78,7 +80,7 @@ export default class Details extends Component {
                 </div>
                 <div class="badges">
                   <GenreList genres={this.state.genres} />
-                  <Popularity value={this.state.popularity} bigger />
+                  <Popularity value={this.state.vote_average} bigger />
                 </div>
               </div>
 
