@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import './style.scss';
 
-export default function Pagination({page, total_pages, changePage}) {
+export default function Pagination({ page, total_pages, changePage }) {
   
   let pages = []
   const elementsByPage = parseInt(process.env.REACT_APP_ELEMENTS_BY_PAGE) || 5;  
@@ -24,17 +24,17 @@ export default function Pagination({page, total_pages, changePage}) {
     pages.push(i)
   }
 
-  pages = pages.map((page_num) =>
+  pages = pages.map( (page_num) =>
                       <button 
                         key={page_num} 
-                        className={classNames({current: page_num === page, abel: true })}
+                        className={classNames({ current: page_num === page, abel: true })}
                         onClick={ () => changePage(page_num)}
                       >{page_num}</button>
   )
 
   return (
     <div className="pagination">
-        {pages.map((page, index) => <div key={index} className="bttn-container">{page}</div>)}
+        {pages.map( (page, index) => <div key={index} className="bttn-container">{page}</div> )}
     </div>
   );
 }

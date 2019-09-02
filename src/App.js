@@ -39,14 +39,16 @@ class App extends Component{
   } 
   
   changePage = (page) => {
-    const original_page = Math.floor((page - 1)/4) + 1
+    this.setState({page})
+  }
+
+  componentDidUpdate = () => {
+    const original_page = Math.floor((this.state.page - 1)/4) + 1
 
     if(original_page !== this.state.original_page){
       console.log("Updating...")
-      this.updateMovies({ original_page, page })
+      this.updateMovies({ original_page })
     }
-
-    this.setState({page})
   }
 
   render() {
@@ -54,6 +56,7 @@ class App extends Component{
     const start = ((page - 1) * this.elementsByPage) % 20
     const end = start + this.elementsByPage
     const movies = this.state.results.slice(start, end)
+    console.log("result",this.state.results)
     
     return (
       <>
@@ -61,10 +64,10 @@ class App extends Component{
           <Header />
           <Switch>
             <Route exact path="/">
-              <SearchBox handle={(query) => this.updateMovies({ query })} />
+              <SearchBox handle={(query) => this.updateMovies({ query })} value={this.state.query} />
               <main>
-                {movies.map((movie, index) => 
-                  <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/>)
+                {movies.map( (movie, index) => 
+                  <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/> )
                 }
                 { this.state.query === '' ? 
                   <Illustration content="search" /> :
@@ -76,12 +79,13 @@ class App extends Component{
                 }
               </main>
             </Route>
-            <Route path="/movie/:id"
-                   render={ (props) =>
-                            <main>
-                              <Details {...props} />
-                            </main>
-                          }
+            <Route 
+              path="/movie/:id"
+              render={ (props) =>
+                        <main>
+                          <Details {...props} />
+                        </main>
+              }
             />
           </Switch>
         </Router>

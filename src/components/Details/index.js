@@ -32,9 +32,7 @@ export default class Details extends Component {
   componentDidMount = async () => {
     const data = await getMovie(this.props.match.params.id)
     this.updateVideos()
-    this.setState({ ...data })
-    // console.log("me", me)
-                  
+    this.setState({ ...data })                  
   }
   
   render() {
@@ -77,14 +75,14 @@ export default class Details extends Component {
             </div>
             </div>
             {this.state.videos.map( (video) => 
-                                    <div className="video" key={video.key}>
-                                      <iframe 
-                                        src={`https://www.youtube.com/embed/${video.key}`}
-                                        frameBorder="0"
-                                        title={video.title}
-                                      />
-                                     </div>
-                                  )}
+                                <div className="video" key={video.key}>
+                                  <iframe 
+                                    src={`https://www.youtube.com/embed/${video.key}`}
+                                    frameBorder="0"
+                                    title={video.title}
+                                  />
+                                </div>
+            )}
           </div>
         </div>
         :

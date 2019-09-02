@@ -9,22 +9,25 @@ const apiKey = process.env.REACT_APP_API_KEY
 
 const searchMovies = async (query, page) => {
   if(query === ''){
-    return {results: [], page: 0, total_pages: 1, original_page: 1}
+    return { results: [], page: 0, total_pages: 1, original_page: 1 }
   }
   const data = await api.get(`/search/movie?api_key=${apiKey}&query=${query}&page=${page}`)
                         .then( (res) => {
-                            const { results, total_results, page: original_page } = res.data
+                            let { results, total_results, page: original_page } = res.data
+                            results = results.map( ({ title, poster_path, popularity, overview, release_date, id, genre_ids }) => {
+                              return { title, poster_path, popularity, overview, release_date, id, genre_ids }
+                              }
+                            )
                             let total_pages = Math.ceil(total_results / 5) 
-                            return {results, total_pages, original_page}
+                            return { results, total_pages, original_page }
                         })
-  // console.log("get",data)
   return data
 }
 
 
 const getMovieVideos = async (id) => {
   let videos = await api.get(`/movie/${id}/videos?api_key=${apiKey}`)
-                          .then( (res) => res.data.results)
+                        .then( (res) => res.data.results )
   videos = videos.filter( (video) => video.site === "YouTube" )
                  .slice(0,1)
                  .map( (video) => ({ key: video.key, title: video.name }) )
@@ -44,10 +47,10 @@ const getMovie = async (id) => {
           popularity,
           poster_path,
           error
-        } = await api.get(`/movie/${id}?api_key=${apiKey}`)
-                        .then( (res) => res.data)
-                        .catch( (res) => {return { error: true }} )
-  // console.log("get",data)
+  } = await api.get(`/movie/${id}?api_key=${apiKey}`)
+               .then( (res) => res.data)
+               .catch( () => ({ error: true }) )
+  
   const allowedStatus = {
     'Rumored': 'Rumores',
     'Planned': 'Planejado',
@@ -56,6 +59,7 @@ const getMovie = async (id) => {
     'Released': 'Lançado',
     'Canceled': 'Cancelado'
   }
+
   return{ title,
           release_date,
           overview, 
@@ -69,17 +73,14 @@ const getMovie = async (id) => {
           popularity,
           poster_path,
           error
-        }
+  }
 }
 
 const getMoviesGenres = async () => {
-  // console.log(apiKey)
   const data = await api.get(`/genre/movie/list?api_key=${apiKey}`)
-                            .then(res => res.data.genres)
+                        .then(res => res.data.genres)
   let genre_list = new Map()
-  data.forEach( (genre) => {
-    genre_list.set(genre.id, genre.name)
-  })
+  data.forEach( (genre) => genre_list.set(genre.id, genre.name) )
   return genre_list
 }
 

@@ -9,7 +9,10 @@ export default function Illustration({content}) {
   const illustrations = { search, err404 }
   const msgs = {
     search: 'Procurando algum filme?',
-    err404: ['[Erro 404] Algo de errado aconteceu! ', <Link key={1} to="/">Voltar ao início</Link>]
+    err404: [
+      '[Erro 404] Algo de errado aconteceu! ',
+      <Link key={1} to="/">Voltar ao início</Link>
+    ]
   }
   return (
     <div className="illustration">

@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 export default function Card({movie, genres}) {
-  // console.log(el)
-  const {title, poster_path, popularity, overview, release_date, id} = movie;
-  console.log(movie)
+  const { title, poster_path, popularity, overview, release_date, id } = movie;
+
   return (
     <div className="card-container">
       <div className="card">
@@ -21,7 +20,7 @@ export default function Card({movie, genres}) {
             </div>
             <Link to={`/movie/${id}`}><h1>{title}</h1></Link>
           </div>
-          <span className="date abel">{ moment(release_date).format('DD/MM/YYYY')}</span>
+          <span className="date abel">{moment(release_date).format('DD/MM/YYYY')}</span>
           <p className="lato">{overview}</p>
           <div className="genres">
             {genres.map( (genre, index) => <span key={index} className="genre abel">{genre}</span>)}
