@@ -8,6 +8,7 @@ $font-size: 2em;
     grid-area: search;
     margin: 1.4em 0;
     padding: 0 1.2em;
+    position: relative;
 
     input{
         background-color: $gray;
@@ -17,7 +18,20 @@ $font-size: 2em;
         font-size: 1.6em;
         font-weight: lighter;
         height: $height;
-        padding: 0 2em;
+        padding: 0 8em 0 2em;
         width: 100%;
+    }
+
+    .tuto{
+        border: 0.06em solid $black;
+        border-radius: 0.2em;
+        cursor: pointer;
+        display: block;
+        font-size: 1.6em;
+        position: absolute;
+        right: 2em;
+        top: 2em;
+        padding: 0.5em;
+        opacity: 0.4;
     }
 }
