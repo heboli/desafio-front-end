@@ -15,16 +15,14 @@ body{
 }
 
 #root{
+    align-items: center;
     display: grid;
     grid-template-areas: "header header header"
                          "... search ..."
                          "... main ..."
                          "... footer ...";
     grid-template-columns: 1fr minmax(0, 900px) 1fr;
-    /* grid-template-rows: 8em 
-                        3.8em
-                        1fr
-                        2.8em; */
+    grid-gap: 1.2em;
     justify-content: center;
 }
 

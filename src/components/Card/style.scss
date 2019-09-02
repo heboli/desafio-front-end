@@ -1,7 +1,5 @@
 @import '../variables';
-.card-container{
-    padding: 0 1.2em;
-}
+
 .card{
     background-color: $gray;
     display: flex;
@@ -15,29 +13,48 @@
     .content{
         padding-bottom: 1em;
         width: 100%;
-        .top-bar{
+
+        .top-bar-container{
             align-items: flex-end;
-            background-color: $dark-blue;
-            box-sizing: border-box;
-            display: flex;
+            background: transparent;
+            display: grid;
+            grid-column-gap: 1.4em;
+            grid-template-areas: "popularity h1"
+                                 "... date";
+            grid-template-columns: 6.6em + 2em 1fr;
             min-height: 6em;
-            padding: 0 1.2em;
+            
+            .top-bar-bg{
+                background-color: $dark-blue;
+                grid-area: popularity / h1;
+                grid-column-start: popularity;
+                height: 100%;
+                width: 100%;
+                z-index: 0;
+            }
+            .popularity{
+                grid-area: popularity;
+                z-index: 0;
+                justify-self: end;
+            }
 
             a,
             a:hover{
+                color: $light-blue;
                 text-decoration: none;    
             }
 
             h1{
                 color: $light-blue;
-                margin-left: 0.5em;
                 font-size: 3em;
+                grid-area: h1;
+                z-index: 10;
             }
         }
         .date{
             color: $black;
             display: block;
-            margin-left: 5.2em;
+            grid-area: date;
             margin-top: 0.2em;
             font-size: 1.8em;
             opacity: 0.6;

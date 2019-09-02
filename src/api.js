@@ -43,7 +43,7 @@ const getMovie = async (id) => {
           budget,
           revenue,
           genres,
-          popularity,
+          vote_average,
           poster_path,
           error
   } = await api.get(`/movie/${id}?api_key=${apiKey}`)
@@ -69,7 +69,7 @@ const getMovie = async (id) => {
           revenue,
           profit: revenue - budget,
           genres: !error ? genres.map( (genre) => genre.name ) : [],
-          popularity,
+          vote_average,
           poster_path,
           error
   }

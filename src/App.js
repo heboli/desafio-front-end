@@ -48,7 +48,7 @@ class App extends Component{
   }
 
   render() {
-    const { page, total_pages, genre_list } = this.state
+    const { page, total_pages, genre_list, query } = this.state
     const start = ((page - 1) * this.elementsByPage) % 20
     const end = start + this.elementsByPage
     const movies = this.state.results.slice(start, end)
@@ -59,20 +59,21 @@ class App extends Component{
           <Header />
           <Switch>
             <Route exact path="/">
-              <SearchBox handle={(query) => this.updateMovies({ query })} value={this.state.query} listenerChange />
+              <SearchBox handle={(query) => this.updateMovies({ query })} value={query} listenerChange />
               <main>
                 {movies.map( (movie, index) => 
                   <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/> )
                 }
-                { this.state.query === '' ? 
-                  <Illustration content="search" /> :
-                  <Pagination 
-                    page={page} 
-                    total_pages={total_pages}
-                    changePage={(newPage) => this.setState({ page: newPage })} 
-                  />
-                }
+                {query === '' && <Illustration content="search" />}
+                {total_pages === 0 && <Illustration content="empty" />}
               </main>
+              {query !== '' &&
+                <Pagination 
+                  page={page} 
+                  total_pages={total_pages}
+                  changePage={(newPage) => this.setState({ page: newPage })} 
+                />
+              }
             </Route>
             <Route 
               path="/movie/:id"

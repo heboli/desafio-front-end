@@ -39,15 +39,16 @@ export default class Details extends Component {
   }
   
   render() {
-    const duration = moment.duration(this.state.runtime, 'minutes')
+    const duration = this.state.runtime > 0 ? moment.duration(this.state.runtime, 'minutes') : null
     const items = {
       'situação': this.state.status,
       'idioma': ISO6391.getName(this.state.original_language),
-      'duração': `${duration.hours()}h ${duration.minutes()}min`,
+      'duração': !!duration ? `${duration.hours()}h ${duration.minutes()}min` : '--',
       'orçamento': numeral(this.state.budget).format('$0,0.00'),
       'receita': numeral(this.state.revenue).format('$0,0.00'),
       'lucro': numeral(this.state.profit).format('$0,0.00')
     }
+
     const date = moment(this.state.release_date)
 
     return (
@@ -79,7 +80,7 @@ export default class Details extends Component {
                 </div>
                 <div className="badges">
                   <GenreList genres={this.state.genres} />
-                  <Popularity value={this.state.vote_average} bigger />
+                  <Popularity value={this.state.vote_average * 10} bigger />
                 </div>
               </div>
 

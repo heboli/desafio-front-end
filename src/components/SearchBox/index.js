@@ -17,7 +17,7 @@ class SearchBox extends Component{
   }
   
   handleKeyPress = (event) => {
-    if(event.keyCode === 13){
+    if(event.keyCode === 13 && !this.props.listenerChange){
       this.sendQuery()
     }
   }
@@ -32,7 +32,7 @@ class SearchBox extends Component{
     return (
       <div className="search-box">
         <input
-          className={classNames({ 'enter-key': !!listenerChange, abel: true, 'search-box': true })}
+          className={classNames([{ 'enter-key': !listenerChange }, 'abel'])}
           placeholder="Busque um filme por nome, ano ou gênero..." 
           onChange={this.handleChange.bind(this)}
           onKeyDown={this.handleKeyPress.bind(this)}

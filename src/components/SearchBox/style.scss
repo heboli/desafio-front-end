@@ -1,25 +1,28 @@
 @import '../variables';
 
-$height: 3.4em;
-$font-size: 2em;
 .search-box{
-    box-sizing: border-box;
     font-size: 1em;
     grid-area: search;
+    height: 5,44em;
     margin: 1.4em 0;
-    padding: 0 1.2em;
     position: relative;
-
+    
     input{
         background-color: $gray;
         border: none;
-        border-radius: $height / 2;
+        border-radius: 3.4em;
+        box-sizing: border-box;
         color: $dark-blue;
         font-size: 1.6em;
         font-weight: lighter;
-        height: $height;
-        padding: 0 8em 0 2em;
+        height: 3.4em;
+        margin: 0;
+        padding: 0 2em;
         width: 100%;
+
+        &.enter-key{
+            padding: 0 8em 0 2em;
+        }
     }
 
     .tuto{

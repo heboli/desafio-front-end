@@ -33,8 +33,8 @@ export default function Pagination({ page, total_pages, changePage }) {
   )
 
   return (
-    <div className="pagination">
+    <footer className="pagination">
         {pages.map( (page, index) => <div key={index} className="bttn-container">{page}</div> )}
-    </div>
+    </footer>
   );
 }
