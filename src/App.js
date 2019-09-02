@@ -61,7 +61,7 @@ class App extends Component{
           <Header />
           <Switch>
             <Route exact path="/">
-              <SearchBox handle={(query) => this.updateMovies({ query })} value={this.state.query} />
+              <SearchBox handle={(query) => this.updateMovies({ query })} />
               <main>
                 {movies.map((movie, index) => 
                   <Card movie={movie} key={index} genres={movie.genre_ids.map((id) => genre_list.get(id))}/>)

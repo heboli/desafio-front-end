@@ -34,7 +34,8 @@
             flex-flow: row-reverse;
             
             .desc{
-                box-sizing: border-box; 
+                box-sizing: border-box;
+                flex-grow: 1;
                 padding: 1em 2.16em;
 
                 h3,

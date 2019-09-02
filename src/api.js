@@ -26,6 +26,7 @@ const getMovieVideos = async (id) => {
   let videos = await api.get(`/movie/${id}/videos?api_key=${apiKey}`)
                           .then( (res) => res.data.results)
   videos = videos.filter( (video) => video.site === "YouTube" )
+                 .slice(0,1)
                  .map( (video) => ({ key: video.key, title: video.name }) )
   return videos
 }
