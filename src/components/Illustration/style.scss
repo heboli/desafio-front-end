@@ -1,0 +1,28 @@
+@import '../variables';
+
+.illustration{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em 0;
+    width: 100%;
+
+    img{
+        height: auto;
+        width: 320px;
+    }
+
+    p{
+        color: $black;
+        font-size: 1.8em;
+    }
+
+    .attribution{
+        font-size: 1.4em;
+    }
+
+    a{
+        color: $dark-blue;
+    }
+}

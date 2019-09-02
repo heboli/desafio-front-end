@@ -1,0 +1,132 @@
+@import '../variables';
+
+.details-container{
+    margin-top: 1em;
+    padding: 1em;
+    
+    .details{
+        background-color: $gray;
+        .top-bar{
+            align-items: baseline;
+            background-color: darken($gray,4);
+            display: flex;
+            justify-content: space-between;
+            padding: 1em 0;
+
+            h1{
+                color: $dark-blue;
+                font-size: 3.6em;
+                margin: 0.1em 0.6em;
+            }
+
+            .date{
+                color: $black;
+                font-size: 1.6em;
+                font-weight: 400;
+                margin: 0 1em;
+                opacity: 0.6;
+            }
+        }
+
+        .content{
+            align-items: flex-start;
+            display: flex;
+            flex-flow: row-reverse;
+            
+            .desc{
+                box-sizing: border-box; 
+                padding: 1em 2.16em;
+
+                h3,
+                h5{
+                    color: $dark-blue;
+                    font-size: 2.4em;
+                
+                }
+                hr{
+                    border: 0.1em solid $light-blue;
+                    margin: 0.4em 0 2em 0;
+                }
+
+                p{
+                    color: $black;
+                    font-size: 1.6em;
+                    margin-bottom: 1em;
+                }
+
+                .info{
+                    align-items: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+
+                    div{
+                        text-align: center;
+                        margin: 0 0.8em;
+
+                        &:first-child{
+                            margin-left: 0;
+                        }
+
+                        &:last-child{
+                            margin-right: 0;
+                        }
+
+                        h5{
+                            font-size: 2em;
+                            margin-bottom: 0.2em;
+                            text-transform: capitalize;
+                        }
+
+                        p{
+                            font-size: 1.4em;
+                        }
+                    }
+                }
+            }
+
+            img{
+                flex-shrink: 0;
+                height: 100%;
+                max-width: 320px;
+                width: auto;
+            }    
+        }
+
+        .video{
+            height: 0;
+            margin: 1em 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            width: 100%;
+
+            iframe{
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%
+            }
+        }
+
+
+        @media screen and (max-width: 590px){
+            .top-bar{
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .content{
+                align-items: center;
+                flex-direction: column;
+                height: auto;
+        
+                img{
+                    height: auto;
+                    max-width: 320px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

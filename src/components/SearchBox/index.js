@@ -12,7 +12,8 @@ class SearchBox extends Component{
       <div className="search-box">
         <input className="search-box abel" 
               placeholder="Busque um filme por nome, ano ou gênero..." 
-              onChange={this.handleChange.bind(this)}/>
+              onChange={this.handleChange.bind(this)}
+              value={this.props.value} />
       </div>
     );
   }

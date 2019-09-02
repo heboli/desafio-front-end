@@ -51,6 +51,11 @@
                 }
             }
 
+            a,
+            a:hover{
+                text-decoration: none;    
+            }
+
             h1{
                 color: $light-blue;
                 margin-left: 0.4em;
@@ -58,17 +63,18 @@
             }
         }
         .date{
+            color: $black;
             display: block;
             margin-left: 7.2em ;
             margin-top: 0.6em;
             font-size: 1.2em;
-            opacity: 0.5;
+            opacity: 0.6;
         }
         p,
         span.genre{
+            color: $black;
             font-size: 1.6em;
             margin-top: 2em;
-            opacity: 0.7;
             padding: 0 1.8em;
         }
 
@@ -95,8 +101,8 @@
 
         img{
             height: auto;
-            width: 100%;
             max-width: 320px;
+            width: 100%;
         }
     }
 }

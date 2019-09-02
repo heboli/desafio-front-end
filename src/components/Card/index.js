@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 
 export default function Card({movie, genres}) {
   // console.log(el)
-  const {title, poster_path, popularity, overview, release_date} = movie;
-  // console.log(children)
+  const {title, poster_path, popularity, overview, release_date, id} = movie;
+  console.log(movie)
   return (
     <div className="card-container">
       <div className="card">
@@ -18,7 +19,7 @@ export default function Card({movie, genres}) {
                 <span>{Math.round(popularity)}%</span>
               </div>
             </div>
-            <h1>{title}</h1>
+            <Link to={`/movie/${id}`}><h1>{title}</h1></Link>
           </div>
           <span className="date abel">{ moment(release_date).format('DD/MM/YYYY')}</span>
           <p className="lato">{overview}</p>

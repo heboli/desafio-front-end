@@ -16,12 +16,62 @@ const searchMovies = async (query, page) => {
                             const { results, total_results, page: original_page } = res.data
                             let total_pages = Math.ceil(total_results / 5) 
                             return {results, total_pages, original_page}
-                          })
+                        })
   // console.log("get",data)
   return data
 }
 
-const getMovieGenres = async () => {
+
+const getMovieVideos = async (id) => {
+  let videos = await api.get(`/movie/${id}/videos?api_key=${apiKey}`)
+                          .then( (res) => res.data.results)
+  videos = videos.filter( (video) => video.site === "YouTube" )
+                 .map( (video) => ({ key: video.key, title: video.name }) )
+  return videos
+}
+
+const getMovie = async (id) => {
+  const { title,
+          release_date,
+          overview, 
+          status,
+          original_language,
+          runtime,
+          budget,
+          revenue,
+          genres,
+          popularity,
+          poster_path,
+          error
+        } = await api.get(`/movie/${id}?api_key=${apiKey}`)
+                        .then( (res) => res.data)
+                        .catch( (res) => {return { error: true }} )
+  // console.log("get",data)
+  const allowedStatus = {
+    'Rumored': 'Rumores',
+    'Planned': 'Planejado',
+    'In Production': 'Em produção',
+    'Post Production': 'Pós-Produção',
+    'Released': 'Lançado',
+    'Canceled': 'Cancelado'
+  }
+  return{ title,
+          release_date,
+          overview, 
+          status: allowedStatus[status],
+          original_language,
+          runtime,
+          budget,
+          revenue,
+          profit: revenue - budget,
+          genres,
+          popularity,
+          poster_path,
+          error
+        }
+}
+
+const getMoviesGenres = async () => {
   // console.log(apiKey)
   const data = await api.get(`/genre/movie/list?api_key=${apiKey}`)
                             .then(res => res.data.genres)
@@ -32,4 +82,4 @@ const getMovieGenres = async () => {
   return genre_list
 }
 
-export { searchMovies, getMovieGenres };
+export { searchMovies, getMovieVideos, getMovie, getMoviesGenres };
