@@ -10,7 +10,6 @@
 body{
     background-color: #ffffff;
     font-size: 10px;
-    /* grid-templa */
     width: 100%;
 }
 
@@ -38,8 +37,3 @@ main{
 .lato{
     font-family: 'Lato', sans-serif;
 }
-
-
-/* *{
-    box-sizing: border-box;
-} */

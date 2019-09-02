@@ -28,7 +28,7 @@ class SearchBox extends Component{
 
   render() {
     const { listenerChange } = this.props
-
+    
     return (
       <div className="search-box">
         <input
@@ -38,7 +38,7 @@ class SearchBox extends Component{
           onKeyDown={this.handleKeyPress.bind(this)}
           defaultValue={this.props.value}
         />
-        {!!this.state.query && <button className="enter-key lato" onClick={this.sendQuery}>[Press Enter]</button>}
+        {!!this.state.query && <button className="enter-key lato" onClick={() => this.sendQuery()}>[Press Enter]</button>}
       </div>
     );
   }

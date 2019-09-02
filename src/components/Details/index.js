@@ -65,7 +65,9 @@ export default class Details extends Component {
               <span className="date lato">{date.isValid() ? date.format('DD/MM/YYYY') : "--"}</span>
             </div>
             <div className="content">
-              {!!this.state.poster_path && <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> }
+              {!!this.state.poster_path && 
+                <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> 
+              }
               <div className="desc">
                 
                 <h3 className="abel">Sinopse</h3>

@@ -5,8 +5,8 @@ import './style.scss';
 export default function Pagination({ page, total_pages, changePage }) {
   
   let pages = []
-  const elementsByPage = parseInt(process.env.REACT_APP_ELEMENTS_BY_PAGE) || 5;  
-  //5 pags
+  const elementsByPage = parseInt(process.env.REACT_APP_ELEMENTS_BY_PAGE);  
+
   let start = page - Math.floor(elementsByPage/2)
   let end = start + elementsByPage
 
@@ -27,7 +27,7 @@ export default function Pagination({ page, total_pages, changePage }) {
   pages = pages.map( (page_num) =>
                       <button 
                         key={page_num} 
-                        className={classNames({ current: page_num === page, abel: true })}
+                        className={classNames([{ current: page_num === page}, 'abel'])}
                         onClick={ () => changePage(page_num)}
                       >{page_num}</button>
   )

@@ -44,7 +44,7 @@ class App extends Component{
   componentDidUpdate = () => {
     const original_page = Math.floor((this.state.page - 1)/4) + 1
 
-    if(original_page !== this.state.original_page){
+    if(original_page !== this.state.original_page && this.state.status !== 'loading'){
       console.log("Updating...")
       this.updateMovies({ original_page })
     }

@@ -18,6 +18,7 @@ export default function Illustration({content}) {
     empty: 'Parece que não há nada por aqui!',
     loading: 'Carregando...'
   }
+  
   return (
     <section className="illustration">
       <img src={illustrations[content]} alt={`${content} illustration`} />
