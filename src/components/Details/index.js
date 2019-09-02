@@ -3,6 +3,8 @@ import { getMovie, getMovieVideos } from '../../api';
 import moment from 'moment';
 import ISO6391 from 'iso-639-1';
 import Illustration from '../Illustration';
+import GenreList from '../GenreList';
+import Popularity from '../Popularity';
 
 import './style.scss';
 
@@ -37,10 +39,11 @@ export default class Details extends Component {
   
   render() {
     console.log(this.state)
+    const duration = moment.duration(this.state.runtime, 'minutes')
     const items = {
       'situação': this.state.status,
       'idioma': ISO6391.getName(this.state.original_language),
-      'duração': `${Math.floor(this.state.runtime/60)}h ${this.state.runtime%60}min`,
+      'duração': `${duration.hours()}h ${duration.minutes()}min`,
       'orçamento': this.state.budget,
       'receita': this.state.revenue,
       'lucro': this.state.profit
@@ -56,23 +59,29 @@ export default class Details extends Component {
               <span className="date lato">{moment(this.state.release_date).format('DD/MM/YYYY')}</span>
             </div>
             <div className="content">
-            {!!this.state.poster_path && <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> }
-            <div className="desc">
-              <h3 className="abel">Sinopse</h3>
-              <hr />
-              <p className="lato">{this.state.overview}</p>
+              {!!this.state.poster_path && <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> }
+              <div className="desc">
+                
+                <h3 className="abel">Sinopse</h3>
+                <hr />
+                <p className="lato">{this.state.overview}</p>
 
-              <h3 className="abel">Informações</h3>
-              <hr />
-              <div className="info">
-                {Object.keys(items).map( (key) => 
-                            <div key={key}>
-                              <h5 className="abel">{key}</h5>
-                              <p className="lato">{items[key]}</p>
-                            </div>
-                )}
+                <h3 className="abel">Informações</h3>
+                <hr />
+                <div className="info">
+                  {Object.keys(items).map( (key) => 
+                              <div key={key}>
+                                <h5 className="abel">{key}</h5>
+                                <p className="lato">{items[key]}</p>
+                              </div>
+                  )}
+                </div>
+                <div class="badges">
+                  <GenreList genres={this.state.genres} />
+                  <Popularity value={this.state.popularity} bigger />
+                </div>
               </div>
-            </div>
+
             </div>
             {this.state.videos.map( (video) => 
                                 <div className="video" key={video.key}>

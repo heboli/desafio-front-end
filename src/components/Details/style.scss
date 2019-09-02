@@ -84,6 +84,11 @@
                         }
                     }
                 }
+
+                .badges{
+                    display: grid;
+                    grid-template-columns: 1fr 12em;
+                }
             }
 
             img{

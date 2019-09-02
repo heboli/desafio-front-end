@@ -1,0 +1,28 @@
+@import '../variables';
+
+div.genres{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1.8em;
+    height: 3em;
+
+
+    span.genre{
+        background-color: $white;
+        border: 0.1em solid $dark-blue;
+        border-radius: 1em;
+        color: $dark-blue;
+        // display: inline;
+        font-size: 1.6em;
+        margin: 0.2em;
+        padding: 0.2em 0.8em;
+
+        &:first-child{
+            margin-left: 0;
+        }
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
