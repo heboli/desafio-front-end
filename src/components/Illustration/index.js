@@ -23,9 +23,11 @@ export default function Illustration({content}) {
     <section className="illustration">
       <img src={illustrations[content]} alt={`${content} illustration`} />
       <p className="lato">{msgs[content]}</p>
-      <p className="lato attribution">
-        illustration by <a href="https://icons8.com">Ouch.pics</a>
-      </p>
+      <footer>
+        <p className="lato attribution">
+          illustration by <a href="https://icons8.com">Ouch.pics</a>
+        </p>
+      </footer>
     </section>
   );
 }

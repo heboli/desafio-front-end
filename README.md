@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 *   **moment**: Usado na formatação de datas e duração de filmes  
 *   **node-sass**: Usado para compilar os arquivos SASS usado no projeto  
 *   **numeral**: Usado para formatação dos valores monetáios (Orçamento, Receita, Lucro)  
-* **iso-639-1**: Usado para identificar o idioma do filme apartir se seu respectivo código  
+* **iso-639-1**: Usado para identificar o idioma do filme apartir de seu respectivo código  
 *   **react-route-dom**: Usado para fazer controle de rotas no projeto  
 
 ### Atribuições Sobre Ilustrações  

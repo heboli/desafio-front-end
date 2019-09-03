@@ -69,21 +69,23 @@ export default class Details extends Component {
                 <img src={`https://image.tmdb.org/t/p/w500${this.state.poster_path}`} alt="movie poster"/> 
               }
               <div className="desc">
-                
-                <h3 className="abel">Sinopse</h3>
-                <hr />
-                <p className="lato">{this.state.overview}</p>
-
-                <h3 className="abel">Informações</h3>
-                <hr />
-                <div className="info">
-                  {Object.keys(items).map( (key) => 
-                              <div key={key}>
-                                <h5 className="abel">{key}</h5>
-                                <p className="lato">{items[key]}</p>
-                              </div>
-                  )}
-                </div>
+                <section>
+                  <h3 className="abel">Sinopse</h3>
+                  <hr />
+                  <p className="lato">{this.state.overview}</p>
+                </section>
+                <section>
+                  <h3 className="abel">Informações</h3>
+                  <hr />
+                  <div className="info">
+                    {Object.keys(items).map( (key) => 
+                                <section key={key}>
+                                  <h5 className="abel">{key}</h5>
+                                  <p className="lato">{items[key]}</p>
+                                </section>
+                    )}
+                  </div>
+                </section>
                 <div className="badges">
                   <GenreList genres={this.state.genres} />
                   <Popularity value={this.state.vote_average * 10} bigger />
